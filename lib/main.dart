@@ -1,37 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get.dart';
 import 'package:projet_alexis/presentation/core/constants/colors.dart';
-void main() {
-  runApp(const MyApp());
-}
+import 'package:get/get.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+main()=>runApp( MaterialApp(
+  home: AppHome(),
+));
 
-  // This widget is the root of your application.
+class AppHome extends StatefulWidget{
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+  State<AppHome> createState() {
+    return  AppState();
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
+class AppState extends State<AppHome>{
+  List<String> Names = [
+    'Jean-Paul','Paul','Alexis','Jerry', 'Brice','Quentin','Stanislas'
+  ];
+  List<String> Mobile = [
+    "06 71 59 57 60", "06 58 15 48 25", "06 95 89 45 42", "05 26 45 62 45", "07 45 85 25 86", "05 82 15 48 62", "06 58 25 36 54"
+  ];
+  List<String> Mail = [
+    "jp.larue@laposte.net", "paul@xefi.fr", "alexis@xefi.fr", "jerry@xefi.fr", "brice@xefi.fr", "quentin@xefi.fr", "stanislas@xefi.fr"
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,27 +32,73 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Center(child: Text("Mon app"),),
         backgroundColor: kGrey6,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // List.generate(
-            //   controller.myApps.length,
-            //       (index) =>
-            //       _buildAppItem(controller.myApps[index], context),
-            // ),
-          ],
-        ),
+      body: ListView.builder(
+        reverse: false,
+        itemBuilder: (_,int index)=>NameList(Names[index], Mobile[index], Mail[index],),
+        itemCount: Names.length,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+}
+class NameList extends StatelessWidget {
+  final String name;
+  final String mobile;
+  final String mail;
+  const NameList(this.name, this.mobile, this.mail);
 
-  // Widget _buildAppItem(ClientTest client, BuildContext context) {
-  // return Text("test"),
-  // }
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(9.0),
+      child: SizedBox(
+        height: context.height/5.5,
+        child: Card(
+          child: Container(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Align(
+                      alignment: Alignment.topLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8.0, top: 8.0),
+                          child: Text(name, style: const TextStyle(fontSize: 25.0),),
+                        ),),
+                    const Spacer(),
+                    IconButton(onPressed: () {}, icon: const Icon(Icons.more_horiz),)
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Padding(padding: EdgeInsets.only(top: 8.0, left: 8.0 ),
+                      child: Icon(Icons.call),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+                      child: Text(mobile, style: const TextStyle(fontSize: 18.0),),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Padding(padding: EdgeInsets.only(top: 8.0, left: 8.0 ),
+                      child: Icon(Icons.mail),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+                      child: Text(mail, style: const TextStyle(fontSize: 18.0),),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
