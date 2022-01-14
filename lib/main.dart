@@ -34,8 +34,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    final _formKey = GlobalKey<FormState>();
+
     return Scaffold(
       backgroundColor: Get.theme.secondaryHeaderColor,
+      floatingActionButton: FloatingActionButton(onPressed: () {}),
+
       appBar: AppBar(
         title: const Center(
           child: Text("Mon app"),
@@ -43,213 +47,217 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: kGrey6,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Container(
-                height: context.height / 2.3,
-                child: Card(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              "Information",
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 20.0),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 16),
-                            child: TextFormField(
-                              decoration: const InputDecoration(
-                                constraints: BoxConstraints(
-                                  minWidth: 100,
-                                  maxWidth: 150,
-                                ),
-                                border: OutlineInputBorder(),
-                                hintText: 'Nom',
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
+                  height: context.height / 2.3,
+                  child: Card(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                "Information",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 20.0),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              decoration: const InputDecoration(
-                                constraints: BoxConstraints(
-                                  minWidth: 100,
-                                  maxWidth: 150,
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 16),
+                              child: TextFormField(
+                                // onSaved: (value) => mafonction = value,
+                                decoration: const InputDecoration(
+                                  constraints: BoxConstraints(
+                                    minWidth: 100,
+                                    maxWidth: 150,
+                                  ),
+                                  border: OutlineInputBorder(),
+                                  hintText: 'Nom',
                                 ),
-                                border: OutlineInputBorder(),
-                                hintText: 'Prenom',
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              decoration: const InputDecoration(
-                                constraints: BoxConstraints(
-                                  minWidth: 100,
-                                  maxWidth: 300,
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                decoration: const InputDecoration(
+                                  constraints: BoxConstraints(
+                                    minWidth: 100,
+                                    maxWidth: 150,
+                                  ),
+                                  border: OutlineInputBorder(),
+                                  hintText: 'Prenom',
                                 ),
-                                border: OutlineInputBorder(),
-                                hintText: 'Société',
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              decoration: const InputDecoration(
-                                constraints: BoxConstraints(
-                                  minWidth: 100,
-                                  maxWidth: 300,
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                decoration: const InputDecoration(
+                                  constraints: BoxConstraints(
+                                    minWidth: 100,
+                                    maxWidth: 300,
+                                  ),
+                                  border: OutlineInputBorder(),
+                                  hintText: 'Société',
                                 ),
-                                border: OutlineInputBorder(),
-                                hintText: 'poste',
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                decoration: const InputDecoration(
+                                  constraints: BoxConstraints(
+                                    minWidth: 100,
+                                    maxWidth: 300,
+                                  ),
+                                  border: OutlineInputBorder(),
+                                  hintText: 'poste',
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Container(
-                height: context.height / 1.8,
-                child: Card(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: const [
-                          Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text(
-                              "Coordonnées",
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 20.0),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              decoration: const InputDecoration(
-                                prefixIcon: Icon(
-                                  Icons.phone,
-                                ),
-                                constraints: BoxConstraints(
-                                  minWidth: 100,
-                                  maxWidth: 300,
-                                ),
-                                border: OutlineInputBorder(),
-                                hintText: 'Téléphone',
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Container(
+                  height: context.height / 1.8,
+                  child: Card(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: const [
+                            Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                "Coordonnées",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 20.0),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              decoration: const InputDecoration(
-                                prefixIcon: Icon(
-                                  Icons.phone_iphone,
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                decoration: const InputDecoration(
+                                  prefixIcon: Icon(
+                                    Icons.phone,
+                                  ),
+                                  constraints: BoxConstraints(
+                                    minWidth: 100,
+                                    maxWidth: 300,
+                                  ),
+                                  border: OutlineInputBorder(),
+                                  hintText: 'Téléphone',
                                 ),
-                                constraints: BoxConstraints(
-                                  minWidth: 100,
-                                  maxWidth: 300,
-                                ),
-                                border: OutlineInputBorder(),
-                                hintText: 'Portable',
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              decoration: const InputDecoration(
-                                prefixIcon: Icon(
-                                  Icons.call_end,
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                decoration: const InputDecoration(
+                                  prefixIcon: Icon(
+                                    Icons.phone_iphone,
+                                  ),
+                                  constraints: BoxConstraints(
+                                    minWidth: 100,
+                                    maxWidth: 300,
+                                  ),
+                                  border: OutlineInputBorder(),
+                                  hintText: 'Portable',
                                 ),
-                                constraints: BoxConstraints(
-                                  minWidth: 100,
-                                  maxWidth: 300,
-                                ),
-                                border: OutlineInputBorder(),
-                                hintText: 'Fax',
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              decoration: const InputDecoration(
-                                prefixIcon: Icon(
-                                  Icons.email,
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                decoration: const InputDecoration(
+                                  prefixIcon: Icon(
+                                    Icons.call_end,
+                                  ),
+                                  constraints: BoxConstraints(
+                                    minWidth: 100,
+                                    maxWidth: 300,
+                                  ),
+                                  border: OutlineInputBorder(),
+                                  hintText: 'Fax',
                                 ),
-                                constraints: BoxConstraints(
-                                  minWidth: 100,
-                                  maxWidth: 300,
-                                ),
-                                border: OutlineInputBorder(),
-                                hintText: 'Email',
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                decoration: const InputDecoration(
+                                  prefixIcon: Icon(
+                                    Icons.email,
+                                  ),
+                                  constraints: BoxConstraints(
+                                    minWidth: 100,
+                                    maxWidth: 300,
+                                  ),
+                                  border: OutlineInputBorder(),
+                                  hintText: 'Email',
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
 
