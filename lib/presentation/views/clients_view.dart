@@ -110,7 +110,7 @@ Widget buildContactItem(BuildContext context, Contact contact) {
                   const Spacer(),
                   IconButton(
                     onPressed: () {
-                      Get.toNamed(Routes.MODIF);
+                      Get.toNamed(Routes.MODIF, arguments: contact.name);
                     },
                     icon: const Icon(Icons.more_horiz),
                   )
