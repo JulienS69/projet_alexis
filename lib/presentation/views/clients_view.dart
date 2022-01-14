@@ -1,14 +1,13 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:projet_alexis/domain/entities/contact.dart';
 import 'package:projet_alexis/presentation/core/constants/colors.dart';
 import 'package:get/get.dart';
 import 'package:projet_alexis/presentation/nav/routes.dart';
 
 import 'clients_view_controller.dart';
 
-
-class ClientView extends GetView<ClientViewController>{
+class ClientView extends GetView<ClientViewController> {
   List<String> Names = [
     'Jean-Paul',
     'Paul',
@@ -39,26 +38,31 @@ class ClientView extends GetView<ClientViewController>{
 
   @override
   Widget build(BuildContext context) {
+    Get.put(ClientViewController());
 
-    // RxList<Clients> listClient = controller.client as RxList<Clients>;
+    RxList<Contact> listClient = controller.contact;
+    // listClient[index].maillistClient[index].mail
     return Scaffold(
       backgroundColor: Get.theme.secondaryHeaderColor,
       appBar: AppBar(
         title: const Center(
           child: Text("Mon app"),
-
         ),
         backgroundColor: kGrey6,
         automaticallyImplyLeading: false,
       ),
-      body: ListView.builder(
-        reverse: false,
-        itemBuilder: (_, int index) => NameList(
-          Names[index],
-          Mobile[index],
-          Mail[index],
-        ),
-        itemCount: Names.length,
+      body:
+      Obx(
+        () => listClient.isNotEmpty
+            ? ListView.builder(
+                reverse: false,
+                itemBuilder: (_, int index) => buildContactItem(
+                  context,
+                  listClient[index],
+                ),
+                itemCount: listClient.length,
+              )
+            : const SizedBox(),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
@@ -72,83 +76,83 @@ class ClientView extends GetView<ClientViewController>{
   }
 }
 
-class NameList extends StatelessWidget {
-  final String name;
-  final String mobile;
-  final String mail;
+// class NameList extends StatelessWidget {
+//   final String name;
+//   final String mobile;
+//   final String mail;
+//
+//   const NameList(this.name, this.mobile, this.mail);
 
-  const NameList(this.name, this.mobile, this.mail);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(9.0),
-      child: SizedBox(
-        height: context.height / 5.5,
-        child: Card(
-          child: Container(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8.0, top: 8.0),
-                        child: Text(
-                          name,
-                          style: const TextStyle(fontSize: 25.0),
-                        ),
-                      ),
-                    ),
-                    const Spacer(),
-                    IconButton(
-                      onPressed: () {
-                        Get.toNamed(Routes.MODIF);
-                      },
-                      icon: const Icon(Icons.more_horiz),
-                    )
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(top: 8.0, left: 8.0),
-                      child: Icon(Icons.call),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+@override
+Widget buildContactItem(BuildContext context, Contact contact) {
+  return Padding(
+    padding: const EdgeInsets.all(9.0),
+    child: SizedBox(
+      height: context.height / 5.5,
+      child: Card(
+        child: Container(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0, top: 8.0),
                       child: Text(
-                        mobile,
-                        style: const TextStyle(fontSize: 18.0),
+                        contact.name ?? "",
+                        style: const TextStyle(fontSize: 25.0),
                       ),
                     ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(top: 8.0, left: 8.0),
-                      child: Icon(Icons.mail),
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    onPressed: () {
+                      Get.toNamed(Routes.MODIF);
+                    },
+                    icon: const Icon(Icons.more_horiz),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(top: 8.0, left: 8.0),
+                    child: Icon(Icons.call),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+                    child: Text(
+                      contact.mobile ?? "",
+                      style: const TextStyle(fontSize: 18.0),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0, left: 8.0),
-                      child: Text(
-                        mail,
-                        style: const TextStyle(fontSize: 18.0),
-                      ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(top: 8.0, left: 8.0),
+                    child: Icon(Icons.mail),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+                    child: Text(
+                      contact.mail ?? "",
+                      style: const TextStyle(fontSize: 18.0),
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
 }
+// }

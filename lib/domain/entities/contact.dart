@@ -1,14 +1,14 @@
 
 class Contact {
   int? id;
-  String? firstName;
-  String? lastName;
-  int? mobile;
+  String? name;
+  String? mail;
+  String? mobile;
 
   Contact({
     this.id,
-    this.firstName,
-    this.lastName,
+    this.name,
+    this.mail,
     this.mobile,
   });
 }
