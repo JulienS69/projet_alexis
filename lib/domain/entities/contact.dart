@@ -1,12 +1,11 @@
 
-
-class ClientTest {
+class Contact {
   int? id;
   String? firstName;
   String? lastName;
   int? mobile;
 
-  ClientTest({
+  Contact({
     this.id,
     this.firstName,
     this.lastName,
