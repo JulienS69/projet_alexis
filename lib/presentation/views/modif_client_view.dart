@@ -13,18 +13,16 @@ class ModifClientView extends GetView<ClientViewController> {
   @override
   Widget build(BuildContext context) {
 
-    String monArgument = "";
+    Map<String, String?> monArgument = {};
 
     if(Get.arguments != null){
       monArgument = Get.arguments;
     }
 
     return Scaffold(
-      backgroundColor: Get.theme.secondaryHeaderColor,
-      floatingActionButton: FloatingActionButton(onPressed: () {}),
       appBar: AppBar(
         title:  Center(
-          child: Text(monArgument),
+          child: Text(monArgument['name'] ?? ""),
         ),
         backgroundColor: kGrey6,
       ),
@@ -42,7 +40,7 @@ class ModifClientView extends GetView<ClientViewController> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: const [
                             Padding(
                               padding: EdgeInsets.all(8.0),
@@ -58,30 +56,32 @@ class ModifClientView extends GetView<ClientViewController> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8, vertical: 16),
+                              padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
-                                // onSaved: (value) => mafonction = value,
+                                initialValue: monArgument['name'],
                                 decoration: const InputDecoration(
                                   constraints: BoxConstraints(
                                     minWidth: 100,
-                                    maxWidth: 150,
+                                    maxWidth: 141,
                                   ),
                                   border: OutlineInputBorder(),
-                                  hintText: 'Nom',
+                                  hintText: 'Prenom',
                                 ),
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 16),
                               child: TextFormField(
+                                // onSaved: (value) => mafonction = value,
+                                initialValue: monArgument['lastName'],
                                 decoration: const InputDecoration(
                                   constraints: BoxConstraints(
                                     minWidth: 100,
-                                    maxWidth: 150,
+                                    maxWidth: 141,
                                   ),
                                   border: OutlineInputBorder(),
-                                  hintText: 'Prenom',
+                                  hintText: 'Nom',
                                 ),
                               ),
                             ),
@@ -93,6 +93,7 @@ class ModifClientView extends GetView<ClientViewController> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
+                                initialValue: monArgument['society'],
                                 decoration: const InputDecoration(
                                   constraints: BoxConstraints(
                                     minWidth: 100,
@@ -111,6 +112,7 @@ class ModifClientView extends GetView<ClientViewController> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
+                                initialValue: monArgument['job'],
                                 decoration: const InputDecoration(
                                   constraints: BoxConstraints(
                                     minWidth: 100,
@@ -131,7 +133,7 @@ class ModifClientView extends GetView<ClientViewController> {
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Container(
-                  height: context.height / 1.8,
+                  height: context.height / 2.1,
                   child: Card(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -155,6 +157,7 @@ class ModifClientView extends GetView<ClientViewController> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
+                                initialValue: monArgument['tel'] ?? "Aucun numéro de téléphone fixe" ,
                                 decoration: const InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.phone,
@@ -176,6 +179,7 @@ class ModifClientView extends GetView<ClientViewController> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
+                                initialValue: monArgument['mobile'],
                                 decoration: const InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.phone_iphone,
@@ -197,6 +201,7 @@ class ModifClientView extends GetView<ClientViewController> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
+                                initialValue: monArgument['fax'] ?? "Aucun numéro faxe" ,
                                 decoration: const InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.call_end,
@@ -218,6 +223,7 @@ class ModifClientView extends GetView<ClientViewController> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
+                                initialValue: monArgument['mail'],
                                 decoration: const InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.email,
@@ -242,6 +248,8 @@ class ModifClientView extends GetView<ClientViewController> {
           ),
         ),
       ),
+      backgroundColor: Get.theme.secondaryHeaderColor,
+      floatingActionButton: FloatingActionButton(onPressed: () {}),
     );
   }
 

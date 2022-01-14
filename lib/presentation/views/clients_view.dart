@@ -51,8 +51,7 @@ class ClientView extends GetView<ClientViewController> {
         backgroundColor: kGrey6,
         automaticallyImplyLeading: false,
       ),
-      body:
-      Obx(
+      body: Obx(
         () => listClient.isNotEmpty
             ? ListView.builder(
                 reverse: false,
@@ -85,6 +84,8 @@ class ClientView extends GetView<ClientViewController> {
 
 @override
 Widget buildContactItem(BuildContext context, Contact contact) {
+  String name = "";
+
   return Padding(
     padding: const EdgeInsets.all(9.0),
     child: SizedBox(
@@ -110,7 +111,17 @@ Widget buildContactItem(BuildContext context, Contact contact) {
                   const Spacer(),
                   IconButton(
                     onPressed: () {
-                      Get.toNamed(Routes.MODIF, arguments: contact.name);
+                      Get.toNamed(
+                        Routes.MODIF,
+                        arguments: {
+                          "name": contact.name,
+                          "lastName": contact.lastName,
+                          "job": contact.job,
+                          "society": contact.society,
+                          "mobile": contact.mobile,
+                          "mail": contact.mail,
+                        },
+                      );
                     },
                     icon: const Icon(Icons.more_horiz),
                   )
