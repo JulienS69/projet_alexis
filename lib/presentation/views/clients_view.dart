@@ -90,76 +90,91 @@ Widget buildContactItem(BuildContext context, Contact contact) {
     padding: const EdgeInsets.all(9.0),
     child: SizedBox(
       height: context.height / 5.5,
-      child: Card(
-        child: Container(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 8.0, top: 8.0),
-                      child: Text(
-                        contact.name ?? "",
-                        style: const TextStyle(fontSize: 25.0),
+      child: InkWell(
+        onTap: () {
+          Get.toNamed(
+            Routes.MODIF,
+            arguments: {
+              "name": contact.name,
+              "lastName": contact.lastName,
+              "job": contact.job,
+              "society": contact.society,
+              "mobile": contact.mobile,
+              "mail": contact.mail,
+            },
+          );
+        },
+        child: Card(
+          child: Container(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 8.0, top: 8.0),
+                        child: Text(
+                          contact.name ?? "",
+                          style: const TextStyle(fontSize: 25.0),
+                        ),
                       ),
                     ),
-                  ),
-                  const Spacer(),
-                  IconButton(
-                    onPressed: () {
-                      Get.toNamed(
-                        Routes.MODIF,
-                        arguments: {
-                          "name": contact.name,
-                          "lastName": contact.lastName,
-                          "job": contact.job,
-                          "society": contact.society,
-                          "mobile": contact.mobile,
-                          "mail": contact.mail,
-                        },
-                      );
-                    },
-                    icon: const Icon(Icons.more_horiz),
-                  )
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 8.0, left: 8.0),
-                    child: Icon(Icons.call),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0, left: 8.0),
-                    child: Text(
-                      contact.mobile ?? "",
-                      style: const TextStyle(fontSize: 18.0),
+                    const Spacer(),
+                    IconButton(
+                      onPressed: () {
+                        Get.toNamed(
+                          Routes.MODIF,
+                          arguments: {
+                            "name": contact.name,
+                            "lastName": contact.lastName,
+                            "job": contact.job,
+                            "society": contact.society,
+                            "mobile": contact.mobile,
+                            "mail": contact.mail,
+                          },
+                        );
+                      },
+                      icon: const Icon(Icons.more_horiz),
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(top: 8.0, left: 8.0),
+                      child: Icon(Icons.call),
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 8.0, left: 8.0),
-                    child: Icon(Icons.mail),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0, left: 8.0),
-                    child: Text(
-                      contact.mail ?? "",
-                      style: const TextStyle(fontSize: 18.0),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+                      child: Text(
+                        contact.mobile ?? "",
+                        style: const TextStyle(fontSize: 18.0),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(top: 8.0, left: 8.0),
+                      child: Icon(Icons.mail),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, left: 8.0),
+                      child: Text(
+                        contact.mail ?? "",
+                        style: const TextStyle(fontSize: 18.0),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
