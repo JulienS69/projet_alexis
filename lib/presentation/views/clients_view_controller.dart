@@ -1,8 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:projet_alexis/domain/entities/contact.dart';
 
 class ClientViewController extends GetxController {
+  final textEditingController = TextEditingController(text: '');
+
   RxList<Contact> contact = <Contact>[
     Contact(
       name: 'Jean-Paul',
@@ -61,4 +64,10 @@ class ClientViewController extends GetxController {
       mail: 'stanislas@xefi.fr',
     ),
   ].obs;
+
+  Future<void> modifyContact(String index) async {
+    if (int.tryParse(index) != null) {
+      contact[int.parse(index)].name = textEditingController.text;
+    }
+  }
 }

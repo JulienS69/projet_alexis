@@ -58,6 +58,7 @@ class ClientView extends GetView<ClientViewController> {
                 itemBuilder: (_, int index) => buildContactItem(
                   context,
                   listClient[index],
+                  index,
                 ),
                 itemCount: listClient.length,
               )
@@ -83,7 +84,7 @@ class ClientView extends GetView<ClientViewController> {
 //   const NameList(this.name, this.mobile, this.mail);
 
 @override
-Widget buildContactItem(BuildContext context, Contact contact) {
+Widget buildContactItem(BuildContext context, Contact contact, int index) {
   String name = "";
 
   return Padding(
@@ -101,6 +102,7 @@ Widget buildContactItem(BuildContext context, Contact contact) {
               "society": contact.society,
               "mobile": contact.mobile,
               "mail": contact.mail,
+              "index": index.toString(),
             },
           );
         },

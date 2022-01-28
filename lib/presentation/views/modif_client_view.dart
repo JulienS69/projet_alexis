@@ -17,14 +17,22 @@ class ModifClientView extends GetView<ClientViewController> {
 
     if(Get.arguments != null){
       monArgument = Get.arguments;
+      controller.textEditingController.text = monArgument['name'] ?? "";
     }
 
     return Scaffold(
       appBar: AppBar(
-        title:  Center(
-          child: Text(monArgument['name'] ?? ""),
-        ),
+        title:  Text(monArgument['name'] ?? ""),
         backgroundColor: kGrey6,
+        actions:[
+          IconButton(
+              onPressed: () async {
+                await controller.modifyContact(monArgument['index'] ?? "");
+                Get.back();
+              },
+              icon: const Icon(Icons.check_circle_outline, color: Colors.green,),
+          ),
+    ],
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -58,7 +66,7 @@ class ModifClientView extends GetView<ClientViewController> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
-                                initialValue: monArgument['name'],
+                                controller: controller.textEditingController,
                                 decoration: const InputDecoration(
                                   constraints: BoxConstraints(
                                     minWidth: 100,
@@ -66,6 +74,7 @@ class ModifClientView extends GetView<ClientViewController> {
                                   ),
                                   border: OutlineInputBorder(),
                                   hintText: 'Prenom',
+
                                 ),
                               ),
                             ),
@@ -248,8 +257,6 @@ class ModifClientView extends GetView<ClientViewController> {
           ),
         ),
       ),
-      backgroundColor: Get.theme.secondaryHeaderColor,
-      floatingActionButton: FloatingActionButton(onPressed: () {}),
     );
   }
 
