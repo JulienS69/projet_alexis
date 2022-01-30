@@ -7,6 +7,8 @@ class Contact {
   String? job;
   String? mail;
   String? mobile;
+  String? fixe;
+  String? faxe;
 
   Contact({
     this.id,
@@ -16,5 +18,7 @@ class Contact {
     this.job,
     this.mail,
     this.mobile,
+    this.fixe,
+    this.faxe,
   });
 }

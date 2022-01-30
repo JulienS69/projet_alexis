@@ -1,11 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:projet_alexis/domain/entities/contact.dart';
 
 class ClientViewController extends GetxController {
-  final textEditingController = TextEditingController(text: '');
-
+  final textEditingControllerFirstName = TextEditingController(text: '');
+  final textEditingControllerLastName = TextEditingController(text: '');
+  final textEditingControllerJob = TextEditingController(text: '');
+  final textEditingControllerSociety = TextEditingController(text: '');
+  final textEditingControllerMail = TextEditingController(text: '');
+  final textEditingControllerMobile = TextEditingController(text: '');
+  final textEditingControllerFixe = TextEditingController(text: '');
+  final textEditingControllerFaxe = TextEditingController(text: '');
   RxList<Contact> contact = <Contact>[
     Contact(
       name: 'Jean-Paul',
@@ -67,7 +72,14 @@ class ClientViewController extends GetxController {
 
   Future<void> modifyContact(String index) async {
     if (int.tryParse(index) != null) {
-      contact[int.parse(index)].name = textEditingController.text;
+      contact[int.parse(index)].name = textEditingControllerFirstName.text;
+      contact[int.parse(index)].lastName = textEditingControllerLastName.text;
+      contact[int.parse(index)].job = textEditingControllerJob.text;
+      contact[int.parse(index)].society = textEditingControllerSociety.text;
+      contact[int.parse(index)].mobile = textEditingControllerMobile.text;
+      contact[int.parse(index)].mail = textEditingControllerMail.text;
+      contact[int.parse(index)].fixe = textEditingControllerFixe.text;
+      contact[int.parse(index)].faxe = textEditingControllerFaxe.text;
     }
   }
 }

@@ -17,7 +17,14 @@ class ModifClientView extends GetView<ClientViewController> {
 
     if(Get.arguments != null){
       monArgument = Get.arguments;
-      controller.textEditingController.text = monArgument['name'] ?? "";
+      controller.textEditingControllerFirstName.text = monArgument['name'] ?? "";
+      controller. textEditingControllerLastName.text = monArgument['lastName'] ?? "";
+      controller. textEditingControllerJob.text = monArgument['job'] ?? "";
+      controller. textEditingControllerSociety.text = monArgument['society'] ?? "";
+      controller. textEditingControllerMail.text = monArgument['mail'] ?? "";
+      controller. textEditingControllerMobile.text = monArgument['mobile'] ?? "";
+      controller. textEditingControllerFixe.text = monArgument['fixe'] ?? "Aucun numéro de téléphone fixe";
+      controller. textEditingControllerFaxe.text = monArgument['faxe'] ?? "Aucun numéro faxe";
     }
 
     return Scaffold(
@@ -42,16 +49,21 @@ class ModifClientView extends GetView<ClientViewController> {
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: SizedBox(
-                  height: context.height / 2.3,
+                  height: context.height / 2.4,
                   child: Card(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(15.0),
+                      ),
+                    ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
                             Padding(
-                              padding: EdgeInsets.all(8.0),
+                              padding: EdgeInsets.all(10.0),
                               child: Text(
                                 "Information",
                                 style: TextStyle(
@@ -66,7 +78,7 @@ class ModifClientView extends GetView<ClientViewController> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
-                                controller: controller.textEditingController,
+                                controller: controller.textEditingControllerFirstName,
                                 decoration: const InputDecoration(
                                   constraints: BoxConstraints(
                                     minWidth: 100,
@@ -83,7 +95,7 @@ class ModifClientView extends GetView<ClientViewController> {
                                   horizontal: 8, vertical: 16),
                               child: TextFormField(
                                 // onSaved: (value) => mafonction = value,
-                                initialValue: monArgument['lastName'],
+                                controller: controller.textEditingControllerLastName,
                                 decoration: const InputDecoration(
                                   constraints: BoxConstraints(
                                     minWidth: 100,
@@ -102,7 +114,7 @@ class ModifClientView extends GetView<ClientViewController> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
-                                initialValue: monArgument['society'],
+                               controller: controller.textEditingControllerSociety,
                                 decoration: const InputDecoration(
                                   constraints: BoxConstraints(
                                     minWidth: 100,
@@ -121,7 +133,7 @@ class ModifClientView extends GetView<ClientViewController> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
-                                initialValue: monArgument['job'],
+                                controller: controller.textEditingControllerJob,
                                 decoration: const InputDecoration(
                                   constraints: BoxConstraints(
                                     minWidth: 100,
@@ -141,14 +153,19 @@ class ModifClientView extends GetView<ClientViewController> {
               ),
               Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: Container(
+                child: SizedBox(
                   height: context.height / 2.1,
                   child: Card(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(15.0),
+                      ),
+                    ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
                             Padding(
                               padding: EdgeInsets.all(8.0),
@@ -166,7 +183,7 @@ class ModifClientView extends GetView<ClientViewController> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
-                                initialValue: monArgument['tel'] ?? "Aucun numéro de téléphone fixe" ,
+                                controller: controller.textEditingControllerFixe,
                                 decoration: const InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.phone,
@@ -188,7 +205,7 @@ class ModifClientView extends GetView<ClientViewController> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
-                                initialValue: monArgument['mobile'],
+                                controller: controller.textEditingControllerMobile,
                                 decoration: const InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.phone_iphone,
@@ -210,7 +227,7 @@ class ModifClientView extends GetView<ClientViewController> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
-                                initialValue: monArgument['fax'] ?? "Aucun numéro faxe" ,
+                               controller: controller.textEditingControllerFaxe,
                                 decoration: const InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.call_end,
@@ -232,7 +249,10 @@ class ModifClientView extends GetView<ClientViewController> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
-                                initialValue: monArgument['mail'],
+                                controller: controller.textEditingControllerMail,
+                                onChanged: (e){
+                                  e = controller.textEditingControllerMail.text;
+                                },
                                 decoration: const InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.email,
