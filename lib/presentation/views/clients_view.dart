@@ -8,34 +8,6 @@ import 'package:projet_alexis/presentation/nav/routes.dart';
 import 'clients_view_controller.dart';
 
 class ClientView extends GetView<ClientViewController> {
-  List<String> Names = [
-    'Jean-Paul',
-    'Paul',
-    'Alexis',
-    'Jerry',
-    'Brice',
-    'Quentin',
-    'Stanislas'
-  ];
-  List<String> Mobile = [
-    "06 71 59 57 60",
-    "06 58 15 48 25",
-    "06 95 89 45 42",
-    "05 26 45 62 45",
-    "07 45 85 25 86",
-    "05 82 15 48 62",
-    "06 58 25 36 54"
-  ];
-  List<String> Mail = [
-    "jp.larue@laposte.net",
-    "paul@xefi.fr",
-    "alexis@xefi.fr",
-    "jerry@xefi.fr",
-    "brice@xefi.fr",
-    "quentin@xefi.fr",
-    "stanislas@xefi.fr"
-  ];
-
   @override
   Widget build(BuildContext context) {
     Get.put(ClientViewController());
@@ -65,7 +37,10 @@ class ClientView extends GetView<ClientViewController> {
             : const SizedBox(),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Contact contact = Contact(name: "New Client", lastName: "", mail: "", fixe: "", faxe: "", job: "", mobile: "", society: "");
+          listClient.add(contact);
+        },
         backgroundColor: Get.theme.secondaryHeaderColor,
         child: const Icon(
           Icons.add,
@@ -75,13 +50,6 @@ class ClientView extends GetView<ClientViewController> {
     );
   }
 }
-
-// class NameList extends StatelessWidget {
-//   final String name;
-//   final String mobile;
-//   final String mail;
-//
-//   const NameList(this.name, this.mobile, this.mail);
 
 @override
 Widget buildContactItem(BuildContext context, Contact contact, int index) {
@@ -102,6 +70,8 @@ Widget buildContactItem(BuildContext context, Contact contact, int index) {
               "society": contact.society,
               "mobile": contact.mobile,
               "mail": contact.mail,
+              "fixe": contact.fixe,
+              "faxe": contact.faxe,
               "index": index.toString(),
             },
           );
@@ -136,6 +106,8 @@ Widget buildContactItem(BuildContext context, Contact contact, int index) {
                             "society": contact.society,
                             "mobile": contact.mobile,
                             "mail": contact.mail,
+                            "fixe": contact.fixe,
+                            "faxe": contact.faxe,
                           },
                         );
                       },
@@ -183,4 +155,3 @@ Widget buildContactItem(BuildContext context, Contact contact, int index) {
     ),
   );
 }
-// }

@@ -39,6 +39,13 @@ class ModifClientView extends GetView<ClientViewController> {
               },
               icon: const Icon(Icons.check_circle_outline, color: Colors.green,),
           ),
+          IconButton(
+            // Aucune possibilité de pouvoir supprimé le contact, nous n'avons pas réussi à le faire.
+            onPressed: ()  {
+              Get.back();
+            },
+            icon: const Icon(Icons.delete, color: Colors.red,),
+          ),
     ],
       ),
       body: SingleChildScrollView(
@@ -86,7 +93,6 @@ class ModifClientView extends GetView<ClientViewController> {
                                   ),
                                   border: OutlineInputBorder(),
                                   hintText: 'Prenom',
-
                                 ),
                               ),
                             ),
@@ -184,6 +190,9 @@ class ModifClientView extends GetView<ClientViewController> {
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
                                 controller: controller.textEditingControllerFixe,
+                                onChanged: (value){
+                                  value = controller.textEditingControllerFixe.text;
+                                },
                                 decoration: const InputDecoration(
                                   prefixIcon: Icon(
                                     Icons.phone,

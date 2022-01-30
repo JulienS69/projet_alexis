@@ -13,6 +13,7 @@ class ClientViewController extends GetxController {
   final textEditingControllerFaxe = TextEditingController(text: '');
   RxList<Contact> contact = <Contact>[
     Contact(
+      id: 01,
       name: 'Jean-Paul',
       lastName: 'Gautier',
       job: 'Travailleur',
@@ -21,6 +22,7 @@ class ClientViewController extends GetxController {
       mobile: '06 71 59 57 60',
     ),
     Contact(
+      id: 02,
       name: 'Paul',
       lastName: 'Bocuse',
       job: 'Cuisinier',
@@ -29,6 +31,7 @@ class ClientViewController extends GetxController {
       mobile: '06 58 15 48 25',
     ),
     Contact(
+      id: 03,
       name: 'Alexis',
       lastName: 'Corbillard',
       job: 'Communiste',
@@ -37,6 +40,7 @@ class ClientViewController extends GetxController {
       mobile: '06 95 89 45 42',
     ),
     Contact(
+      id: 04,
       name: 'Jerry',
       lastName: 'Golé',
       job: "Humoriste",
@@ -45,6 +49,7 @@ class ClientViewController extends GetxController {
       mobile: '05 26 45 62 45',
     ),
     Contact(
+      id: 05,
       name: 'Brice',
       lastName: 'De Nice',
       job: 'Casseur',
@@ -53,6 +58,7 @@ class ClientViewController extends GetxController {
       mail: 'brice@xefi.fr',
     ),
     Contact(
+      id: 06,
       name: 'Quentin',
       lastName: 'Tarantino',
       job: 'Réalisateur',
@@ -61,6 +67,7 @@ class ClientViewController extends GetxController {
       mail: 'quentin@xefi.fr',
     ),
     Contact(
+      id: 07,
       name: 'Stanislas',
       lastName: 'Rigault',
       job: 'Président',
@@ -82,4 +89,14 @@ class ClientViewController extends GetxController {
       contact[int.parse(index)].faxe = textEditingControllerFaxe.text;
     }
   }
+
+
+
+  Future<void> deleteContact(String index) async {
+    if (int.tryParse(index) != null) {
+      contact.remove(int.tryParse(index));
+    }
+  }
+
+
 }
