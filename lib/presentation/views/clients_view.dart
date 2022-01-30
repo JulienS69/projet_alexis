@@ -11,14 +11,23 @@ class ClientView extends GetView<ClientViewController> {
   @override
   Widget build(BuildContext context) {
     Get.put(ClientViewController());
-
     RxList<Contact> listClient = controller.contact;
     // listClient[index].maillistClient[index].mail
     return Scaffold(
       backgroundColor: Get.theme.secondaryHeaderColor,
       appBar: AppBar(
-        title: const Center(
-          child: Text("Mon app"),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "Mon app",
+              style: TextStyle(fontSize: 15),
+            ),
+            SizedBox(
+              height: 50,
+              child: Image.asset('assets/images/logo.png', fit: BoxFit.cover),
+            ),
+          ],
         ),
         backgroundColor: kGrey6,
         automaticallyImplyLeading: false,
@@ -38,7 +47,15 @@ class ClientView extends GetView<ClientViewController> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Contact contact = Contact(name: "New Client", lastName: "", mail: "", fixe: "", faxe: "", job: "", mobile: "", society: "");
+          Contact contact = Contact(
+              name: "New Client",
+              lastName: "",
+              mail: "",
+              fixe: "",
+              faxe: "",
+              job: "",
+              mobile: "",
+              society: "");
           listClient.add(contact);
         },
         backgroundColor: Get.theme.secondaryHeaderColor,
